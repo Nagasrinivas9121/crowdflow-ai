@@ -10,7 +10,7 @@ const CrowdTable = () => {
     setLoading(true);
     try {
       const response = await axios.get('https://crowdflow-ai-885469863630.asia-south1.run.app/api/crowd');
-      setData(response.data);
+      setData(response.data.data);
     } catch (error) {
       console.error('Error fetching crowd data', error);
     } finally {

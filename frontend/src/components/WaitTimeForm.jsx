@@ -20,7 +20,7 @@ const WaitTimeForm = () => {
     setLoading(true);
     try {
       const response = await axios.post('https://crowdflow-ai-885469863630.asia-south1.run.app/api/wait-time', formData);
-      setResult(response.data);
+      setResult(response.data.data);
     } catch (error) {
       console.error('Error calculating wait time', error);
     } finally {

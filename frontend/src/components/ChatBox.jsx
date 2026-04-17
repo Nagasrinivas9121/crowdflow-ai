@@ -29,7 +29,7 @@ const ChatBox = () => {
 
     try {
       const response = await axios.post('https://crowdflow-ai-885469863630.asia-south1.run.app/api/assistant', { query: userMessage.text });
-      const botMessage = { id: Date.now() + 1, text: response.data.response, sender: 'bot' };
+      const botMessage = { id: Date.now() + 1, text: response.data.data.response, sender: 'bot' };
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
       console.error('Error getting assistant response', error);
