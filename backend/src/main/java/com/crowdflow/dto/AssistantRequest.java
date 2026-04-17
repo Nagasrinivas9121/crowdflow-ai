@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class AssistantRequest {
     
-    @NotBlank(message = "Query cannot be blank")
-    @Size(min = 2, max = 500, message = "Query must be between 2 and 500 characters")
+    @NotBlank(message="text required")
+    @Size(max=200,message="text too long")
     private String query;
 }

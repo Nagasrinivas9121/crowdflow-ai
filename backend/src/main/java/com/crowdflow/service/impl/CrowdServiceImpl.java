@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.security.SecureRandom;
+import java.util.Random;
 import java.util.List;
 
 @Slf4j
@@ -18,7 +18,7 @@ import java.util.List;
 public class CrowdServiceImpl implements CrowdService {
 
     private final CrowdZoneRepository repository;
-    private final SecureRandom random = new SecureRandom();
+    private static final Random RANDOM = new Random();
 
     @PostConstruct
     public void init() {
@@ -39,7 +39,7 @@ public class CrowdServiceImpl implements CrowdService {
         
         for (CrowdZone zone : zones) {
             int current = zone.getCurrentDensity();
-            int change = random.nextInt(21) - 5;
+            int change = RANDOM.nextInt(21) - 5;
             int predicted = Math.max(AppConstants.MIN_DENSITY, Math.min(current + change, AppConstants.MAX_DENSITY));
             
             zone.setCurrentDensity(predicted);
@@ -47,13 +47,14 @@ public class CrowdServiceImpl implements CrowdService {
             zone.setRiskLevel(determineRiskLevel(predicted));
         }
         
+        log.info("Crowd prediction calculated successfully");
         return repository.saveAll(zones);
     }
 
     private String determineRiskLevel(int density) {
-        if (density < 40) {
+        if (density < AppConstants.RISK_LOW_THRESHOLD) {
             return AppConstants.RISK_LOW;
-        } else if (density <= 75) {
+        } else if (density <= AppConstants.RISK_MEDIUM_THRESHOLD) {
             return AppConstants.RISK_MEDIUM;
         }
         return AppConstants.RISK_HIGH;

@@ -76,19 +76,23 @@ const ChatBox = () => {
         <div ref={messagesEndRef} />
       </div>
       <form onSubmit={handleSubmit} className="p-3 bg-white border border-slate-200 rounded-b-xl flex gap-2">
+        <label htmlFor="chatInput" className="sr-only">Chat message</label>
         <input
+          id="chatInput"
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask me anything..."
+          aria-label="Chat message input"
           className="flex-1 px-4 py-2 bg-slate-100 border-transparent rounded-lg focus:bg-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
         />
         <button
           type="submit"
           disabled={loading || !input.trim()}
+          aria-label="Send message"
           className="p-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 flex items-center justify-center"
         >
-          <Send size={18} />
+          <Send size={18} aria-hidden="true" />
         </button>
       </form>
     </div>

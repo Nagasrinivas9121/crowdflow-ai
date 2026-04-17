@@ -42,34 +42,43 @@ const WaitTimeForm = () => {
       <div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Number of People in Queue</label>
+            <label htmlFor="peopleInput" className="block text-sm font-medium text-slate-700 mb-1">Number of People in Queue</label>
             <input 
+              id="peopleInput"
               type="number" 
               name="people" 
               value={formData.people} 
               onChange={handleChange}
+              placeholder="Enter number of people"
+              aria-label="Number of people in queue"
               className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Service Time per Person (minutes)</label>
+            <label htmlFor="serviceTimeInput" className="block text-sm font-medium text-slate-700 mb-1">Service Time per Person (minutes)</label>
             <input 
+              id="serviceTimeInput"
               type="number" 
               name="serviceTime" 
               value={formData.serviceTime} 
               onChange={handleChange}
+              placeholder="Enter service time"
+              aria-label="Service time per person in minutes"
               className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
               required
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-1">Number of Active Counters</label>
+            <label htmlFor="countersInput" className="block text-sm font-medium text-slate-700 mb-1">Number of Active Counters</label>
             <input 
+              id="countersInput"
               type="number" 
               name="counters" 
               value={formData.counters} 
               onChange={handleChange}
+              placeholder="Enter active counters"
+              aria-label="Number of active counters"
               min="1"
               className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
               required
@@ -78,9 +87,10 @@ const WaitTimeForm = () => {
           <button 
             type="submit" 
             disabled={loading}
+            aria-label="Calculate Wait Time"
             className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium py-2.5 rounded-lg transition-colors disabled:opacity-70"
           >
-            <Calculator size={18} />
+            <Calculator size={18} aria-hidden="true" />
             {loading ? 'Calculating...' : 'Calculate Wait Time'}
           </button>
         </form>

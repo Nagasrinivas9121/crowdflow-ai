@@ -36,13 +36,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ApiResponse<Void>> handleRuntimeException(RuntimeException ex) {
-        log.error("Runtime exception: ", ex);
+        log.error("Error occurred", ex);
         return new ResponseEntity<>(ApiResponse.error("An unexpected error occurred. Please try again."), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<Void>> handleException(Exception ex) {
-        log.error("Exception: ", ex);
+        log.error("Error occurred", ex);
         return new ResponseEntity<>(ApiResponse.error("A critical error occurred. Contact support."), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

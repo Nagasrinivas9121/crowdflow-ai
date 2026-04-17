@@ -12,6 +12,9 @@ public final class AppConstants {
     public static final int MIN_DENSITY = 0;
     public static final int MAX_DENSITY = 100;
     
+    public static final int RISK_LOW_THRESHOLD = 40;
+    public static final int RISK_MEDIUM_THRESHOLD = 75;
+    
     public static final int FAST_THRESHOLD = 10;
     public static final int MEDIUM_THRESHOLD = 20;
 

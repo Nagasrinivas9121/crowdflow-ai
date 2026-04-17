@@ -16,7 +16,7 @@ CrowdFlow AI provides three primary features:
 2. **Queue Wait-Time Estimator:** A statistical processor that translates current queue lengths, service speeds, and active counters into precise wait times.
 3. **Smart Assistant:** A conversational bot that gives immediate, accurate recommendations based on real-time crowd and wait-time data.
 
-## 4. Architecture
+## 4. Solution Architecture
 The project strictly adheres to Enterprise Spring Boot Clean Architecture:
 ```text
 ├── Controller Layer      (REST endpoints, Input validation, DTO mapping)
@@ -45,8 +45,15 @@ All APIs wrap their return payloads in a standard `ApiResponse<T>`:
 - `GET /api/crowd` - Retrieves the current and predicted crowd density.
 - `POST /api/wait-time` - Calculates wait times. Body: `{"people": Integer, "serviceTime": Integer, "counters": Integer}`.
 - `POST /api/assistant` - Queries the AI. Body: `{"query": String}`.
+- `GET /api/cloud-info` - Retrieves Google Cloud environment detection info.
 
-## 6. Deployment Steps
+## 6. Accessibility Considerations
+- **Semantic HTML**: UI utilizes semantic tags (`<h1>`, `<h2>`) for appropriate page structure.
+- **Form Controls**: All inputs are coupled with corresponding `<label>` tags via the `htmlFor` attribute.
+- **ARIA Labels**: Interactive elements and inputs feature `aria-label` tags for screen-reader compatibility.
+- **Placeholders**: Text inputs provide adequate `placeholder` text conveying expected value format.
+
+## 6. Google Cloud Deployment
 This project is configured for direct deployment to Google Cloud Run:
 
 1. Enable Cloud Run & Cloud Build.
@@ -55,7 +62,7 @@ This project is configured for direct deployment to Google Cloud Run:
 3. Deploy the managed container:
    `gcloud run deploy crowdflow-ai --image gcr.io/YOUR_PROJECT_ID/crowdflow-ai --platform managed --allow-unauthenticated --port 8080`
 
-## 7. Future Scope
+## 7. Future Enhancements
 - **Real AI Integration:** Connect the mocked Assistant logic to Google Gemini or OpenAI APIs for genuine NLP processing.
 - **Hardware Integration:** Replace randomized simulation logic with data ingested from physical turnstiles, IoT cameras, or ticket scanners via Kafka streams.
 - **Push Notifications:** Alert users automatically via WebSockets when their preferred queue becomes fast.

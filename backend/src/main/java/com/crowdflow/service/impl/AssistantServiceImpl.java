@@ -12,7 +12,7 @@ public class AssistantServiceImpl implements AssistantService {
 
     @Override
     public AssistantResponse getAssistantResponse(AssistantRequest request) {
-        String query = request.getQuery() != null ? request.getQuery().toLowerCase() : "";
+        String query = request.getQuery() != null ? request.getQuery().trim().toLowerCase() : "";
         log.info("Processing assistant query: {}", query);
         
         String response;
